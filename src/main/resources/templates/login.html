@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+</head>
+<body>
+<h3>To log in, use the form below</h3>
+<div>
+    <form method="post" action="/login">
+        <label>Enter e-mail</label>
+        <input name="j_username"/>
+
+        <label>Enter password</label>
+        <input type="password" name="j_password"/>
+
+        <input type="submit" value="Login"/>
+    </form>
+    <!---
+    <p>login - admin@gmail.com</p>
+    <p>password - admin</p>
+    <p>roles - ADMIN</p>
+    <br/>
+    <p>login - user@gmail.com</p>
+    <p>password - user</p>
+    <p>roles - USER</p>
+    <br/>
+    <p>login - moderator@gmail.com</p>
+    <p>password - moderator</p>
+    <p>roles - ADMIN and USER</p>
+    --->
+</div>
+</body>
+</html>
