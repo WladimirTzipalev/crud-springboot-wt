@@ -17,8 +17,9 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public void UserServiceImp(UserDao userDao, PasswordEncoder passwordEncoder) {
+    public void UserServiceImp(UserDao userDao, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userDao = userDao;
+        this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -53,6 +54,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
+        String encryptedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encryptedPassword);
         Iterable< ? extends Long > index = null;
         if (index != null) {
             for (Long id : index) {
@@ -61,8 +64,6 @@ public class UserServiceImpl implements UserService {
         } else {
             user.addRole(roleService.findById(2L));
         }
-        String encryptedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encryptedPassword);
         userDao.save(user);
     }
 
