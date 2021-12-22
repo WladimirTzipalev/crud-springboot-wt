@@ -4,7 +4,7 @@ import com.example.crudspringbootwt.dao.RoleDao;
 import com.example.crudspringbootwt.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -19,11 +19,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Role> getAllRoles() {
         return roleDao.getAllRoles();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Role findById(Long id) {
         return roleDao.findById(id);
     }

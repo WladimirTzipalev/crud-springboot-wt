@@ -9,5 +9,4 @@ public class CrudSpringbootWtApplication {
     public static void main(String[] args) {
         SpringApplication.run(CrudSpringbootWtApplication.class, args);
     }
-
 }

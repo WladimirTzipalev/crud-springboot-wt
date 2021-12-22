@@ -55,17 +55,9 @@ public class UserController {
     }
 
     @PostMapping("/admin/users")
-    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-                             @RequestParam(value = "index", required = false) Long[] index) {
+    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "add";
-        }
-        if (index != null) {
-            for (Long id : index) {
-                user.addRole(roleService.findById(id));
-            }
-        } else {
-            user.addRole(roleService.findById(2L));
         }
         userService.save(user);
         return "redirect:/admin/users";
@@ -78,19 +70,10 @@ public class UserController {
         return "edit";
     }
 
-    @PatchMapping("/admin/users/{id}")
-    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-                             @RequestParam(value = "index", required = false) Long[] index) {
+    @PostMapping("/admin/users/{id}")
+    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "edit";
-        }
-
-        if (index != null) {
-            for (Long id : index) {
-                user.addRole(roleService.findById(id));
-            }
-        } else {
-            user.addRole(roleService.findById(2L));
         }
         userService.update(user);
         return "redirect:/admin/users";
